@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+model User {
+  id        String             @id  @default(uuid())
+  name          String         
+  email         String         @unique
+  password      String
+  isOnline      Boolean?        @default(false)
+  refreshTokens String?
+  goals         Goals[]
+  createdAt     DateTime       @default(now())
+}
+
+model Goals {
+  goalsId      String      @id @default(cuid())
+  title   String
+  desiredWeeklyFrequency Int 
+  createdAt     DateTime       @default(now())
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  completions           GoalCompletion[]
+}
+
+model GoalCompletion {
+  id       String   @id @default(cuid())
+  goalId   String
+  createdAt DateTime @default(now()) @db.Timestamptz
+  goal     Goals     @relation(fields: [goalId], references: [goalsId])
+}

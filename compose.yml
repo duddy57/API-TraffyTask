@@ -1,0 +1,16 @@
+name: traffy
+
+services:
+  pg:
+    image: bitnami/postgresql:15.4.0
+    restart: always
+    environment:
+      POSTGRES_USER: ${PS_USER}
+      POSTGRES_PASSWORD: ${PS_PASS}
+      POSTGRES_DB: ${PS_DB}
+    volumes:
+      - postgres_data:/var/bitnami/postgresql
+    ports:
+      - 5432:5432
+volumes:
+  postgres_data:

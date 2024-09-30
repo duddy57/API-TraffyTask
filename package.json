@@ -1,0 +1,23 @@
+{
+  "name": "API-TraffyTask_Prisma",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/http/index.ts",
+    "prisma:push": "bunx prisma db push",
+    "prisma:studio": "bunx prisma studio",
+    "prisma:migrate" : "bunx prisma migrate dev"
+  },
+  "dependencies": {
+    "@elysiajs/jwt": "^1.1.1",
+    "@prisma/client": "^5.20.0",
+    "@types/bun": "^1.1.10",
+    "dayjs": "^1.11.13",
+    "elysia": "latest"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "prisma": "^5.20.0"
+  },
+  "module": "src/http/index.js"
+}
